@@ -1,7 +1,5 @@
 package com.epam.mjc.io;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.io.File;
 import java.io.IOException;
 
@@ -33,20 +31,26 @@ public class FileReader {
     }
 
 
-    private String [] getParseString(@NotNull String inputString) {
-        return inputString.split(System.lineSeparator());
-
-    }
-
-    private String getValueByKey(String @NotNull [] inputString, String key) {
-
-        for (int i = 0; i < inputString.length; i++) {
-            if (inputString[i].contains(key)) {
-                return inputString[i].substring(key.length() + 2);
-            }
+    private String[] getParseString(String inputString) {
+        if (inputString != null) {
+            return inputString.split(System.lineSeparator());
         }
+        String[] empty = new String[]{"empty"};
+        return empty;
 
-        return key;
     }
 
+    private String getValueByKey(String[] inputString, String key) {
+        if (inputString != null && key != null) {
+            for (int i = 0; i < inputString.length; i++) {
+                if (inputString[i].contains(key)) {
+                    return inputString[i].substring(key.length() + 2);
+                }
+            }
+            return key;
+        }
+        return "error";
+
+
+    }
 }
