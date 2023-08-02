@@ -1,8 +1,8 @@
 package com.epam.mjc.io;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 
@@ -32,12 +32,13 @@ public class FileReader {
         return new Profile(name, age, email, phone);
     }
 
-    private String[] getParseString(String inputString) {
+
+    private String [] getParseString(@NotNull String inputString) {
         return inputString.split(System.lineSeparator());
 
     }
 
-    private String getValueByKey(String[] inputString, String key) {
+    private String getValueByKey(String @NotNull [] inputString, String key) {
 
         for (int i = 0; i < inputString.length; i++) {
             if (inputString[i].contains(key)) {
