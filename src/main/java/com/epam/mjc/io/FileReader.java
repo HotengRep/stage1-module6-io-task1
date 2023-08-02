@@ -19,7 +19,8 @@ public class FileReader {
 
         }
 
-        String[] parseString = getParseString(fileContent);
+        String[] parseString = fileContent.split(System.lineSeparator());
+        ;
 
         String name = getValueByKey(parseString, "Name");
         String email = getValueByKey(parseString, "Email");
@@ -31,26 +32,18 @@ public class FileReader {
     }
 
 
-    private String[] getParseString(String inputString) {
-        if (inputString != null) {
-            return inputString.split(System.lineSeparator());
-        }
-        String[] empty = new String[]{"empty"};
-        return empty;
-
-    }
-
     private String getValueByKey(String[] inputString, String key) {
-        if (inputString != null && key != null) {
+        if (inputString == null || key == null) {
+            return "error";
+        } else {
             for (int i = 0; i < inputString.length; i++) {
                 if (inputString[i].contains(key)) {
                     return inputString[i].substring(key.length() + 2);
                 }
             }
             return key;
+
         }
-        return "error";
-
-
     }
 }
+
